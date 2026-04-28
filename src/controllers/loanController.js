@@ -10,7 +10,6 @@ export const LoanController = {
         data: loan
       });
     } catch (err) {
-      // Jika stok habis atau ID salah, kirim status 400 (Bad Request)
       res.status(400).json({ error: err.message });
     }
   },
@@ -21,6 +20,23 @@ export const LoanController = {
       res.json(loans);
     } catch (err) {
       res.status(500).json({ error: err.message });
+    }
+  },
+
+  // ✅ TAMBAHAN BARU
+  async getTopBorrowers(req, res) {
+    try {
+      const result = await LoanModel.getTopBorrowers();
+
+      res.json({
+        success: true,
+        data: result
+      });
+    } catch (err) {
+      res.status(500).json({
+        success: false,
+        message: err.message
+      });
     }
   }
 };
