@@ -23,7 +23,6 @@ export const LoanController = {
     }
   },
 
-  // ✅ TAMBAHAN BARU
   async getTopBorrowers(req, res) {
     try {
       const result = await LoanModel.getTopBorrowers();
